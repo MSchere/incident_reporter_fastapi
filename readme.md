@@ -12,18 +12,17 @@ pip install -r requirements.txt
 
 ## Usage/Examples
 
-    ```bash
-
+```bash
 uvicorn main:app --reload
+```
 
-````
 ### API Reference
 
 #### Get item
 
 ```http
   GET /items/${id}
-````
+```
 
 | Parameter | Type  | Description                       |
 | :-------- | :---- | :-------------------------------- |
