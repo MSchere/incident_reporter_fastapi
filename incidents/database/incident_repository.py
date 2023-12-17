@@ -17,22 +17,22 @@ class IncidentRepository:
             print(f"Error creating incident: {e}")
             return None
 
-    def update_incident(self, id: str, title: str, description: str, status: IncidentStatus, updated_by: str) -> bool:
+    def update_incident(self, id: str, title: str, description: str, status: str, updated_by: str) -> bool:
         try:
-            incident_to_update = self.redis.get(id)
+            incident_to_update = json.loads(self.redis.get(id))
             if incident_to_update is None:
                 return False
-            incident = Incident(
+            updated_incident = Incident(
                 title,
                 description,
-                incident_to_update['createdBy'],
-                incident_to_update['id'],
-                status,
+                incident_to_update["createdBy"],
+                incident_to_update["id"],
+                IncidentStatus[status],
                 updated_by,
-                incident_to_update['createdAt'],
+                datetime.strptime(incident_to_update["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
                 updated_at=datetime.now()
             )
-            self.redis.set(incident.id, incident.json())
+            self.redis.set(id, updated_incident.json())
             return True
         except Exception as e:
             print(f"Error updating incident: {e}")
@@ -47,7 +47,7 @@ class IncidentRepository:
 
     def get_incident(self, id: str) -> Incident or None:
         try:
-            incident = self.redis.get(id)
+            incident = json.loads(self.redis.get(id))
             if incident is None:
                 return None
             return Incident(
@@ -79,6 +79,7 @@ class IncidentRepository:
                     datetime.strptime(incident["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
                     datetime.strptime(incident["updatedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
                 ).json())
+            incidents.sort(key=lambda x: x["createdAt"], reverse=True)
             return incidents
         except Exception as e:
             print(f"Error getting incidents: {e}")

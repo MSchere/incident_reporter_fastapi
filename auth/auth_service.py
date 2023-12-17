@@ -6,5 +6,5 @@ load_dotenv()
 JWT = NextAuthJWT()
 
 @lru_cache
-def get_jwt():
+def get_jwt() -> NextAuthJWT or None:
     return JWT

@@ -1,5 +1,5 @@
 from typing import Annotated
-from auth.service import get_jwt
+from auth.auth_service import get_jwt
 from fastapi import Depends, APIRouter
 from fastapi.responses import JSONResponse
 from incidents.queries.get_incidents.get_incidents_use_case import GetIncidentsUseCase
