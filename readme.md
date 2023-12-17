@@ -1,15 +1,15 @@
-# Incident reporter FastAPI
+# Incident Reporter FastAPI
 
 *Report incidents, update them, and close them.*
 
-### Visit live site at [https://incident-reporter-nextjs.vercel.app/](https://incident-reporter-nextjs.vercel.app/)
+### Visit live site at [https://incident-reporter.vercel.app](https://incident-reporter.vercel.app)
 
 ## Stack
 
 - **Frontend**: Next.js, NextAuth, Tailwind CSS
 - **Backend**: FastAPI
 - **Database**:  Upstash (Redis)
-- **Deployment**: Vercel (frontend), Google App Engine (backend)
+- **Deployment**: Vercel (frontend), Render (backend)
 
 ## Usage
 Place a .env file in the src directory with the following variables:
@@ -30,6 +30,7 @@ uvicorn main:app --reload
 Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
 
 ## API Reference
+You can also find the api reference at [https://incident-reporter-fatapi.onrender.com/docs](https://incident-reporter-fatapi.onrender.com/docs)
 ### Create incident
 ```http
 POST /fastapi/incident
