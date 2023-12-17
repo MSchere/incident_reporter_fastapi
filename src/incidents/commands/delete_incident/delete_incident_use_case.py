@@ -1,5 +1,5 @@
 
-from incidents.database.incident_repository import IncidentRepository
+from src.incidents.database.incident_repository import IncidentRepository
 
 
 class DeleteIncidentUseCase:

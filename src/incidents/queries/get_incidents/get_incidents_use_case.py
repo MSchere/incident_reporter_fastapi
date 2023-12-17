@@ -1,7 +1,8 @@
 
-from incidents.database.incident_repository import IncidentRepository
-from incidents.database.incident_model import Incident
-    
+from src.incidents.database.incident_repository import IncidentRepository
+from src.incidents.database.incident_model import Incident
+
+
 class GetIncidentsUseCase:
 
     def __init__(self):
@@ -9,4 +10,3 @@ class GetIncidentsUseCase:
 
     def execute(self) -> list:
         return self.repository.get_incidents()
-

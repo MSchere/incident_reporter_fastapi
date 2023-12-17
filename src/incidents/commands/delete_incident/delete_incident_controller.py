@@ -1,8 +1,8 @@
 from typing import Annotated
-from auth.auth_service import get_jwt
+from src.auth.auth_service import get_jwt
 from fastapi import Depends, APIRouter
 from fastapi.responses import JSONResponse
-from incidents.commands.delete_incident.delete_incident_use_case import DeleteIncidentUseCase
+from src.incidents.commands.delete_incident.delete_incident_use_case import DeleteIncidentUseCase
 
 createIncidentUseCase = DeleteIncidentUseCase()
 

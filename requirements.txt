@@ -3,3 +3,4 @@ uvicorn==0.24.0.post1
 fastapi-nextauth-jwt===1.1.2
 python-dotenv==1.0.0
 upstash-redis==1.0.0
+pydantic-settings==2.1.0

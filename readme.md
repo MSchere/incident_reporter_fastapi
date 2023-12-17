@@ -12,7 +12,7 @@
 - **Deployment**: Vercel (frontend), Google App Engine (backend)
 
 ## Usage
-Place a .env file in the root directory with the following variables:
+Place a .env file in the src directory with the following variables:
 ```
 NEXTAUTH_SECRET="YOUR_SECRET"
 NEXTAUTH_URL="http://127.0.0.1:3000"

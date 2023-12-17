@@ -1,8 +1,8 @@
 from typing import Annotated
-from auth.auth_service import get_jwt
+from src.auth.auth_service import get_jwt
 from fastapi import Depends, APIRouter
 from fastapi.responses import JSONResponse
-from incidents.queries.get_incident.get_incident_use_case import GetIncidentUseCase
+from src.incidents.queries.get_incident.get_incident_use_case import GetIncidentUseCase
 
 getIncidentUseCase = GetIncidentUseCase()
 
@@ -11,6 +11,7 @@ router = APIRouter(
     tags=["Incidents"],
     responses={404: {"description": "Not found"}},
 )
+
 
 @router.get("/{id}")
 async def get_incident(jwt: Annotated[dict, Depends(get_jwt())]):

@@ -1,9 +1,9 @@
 from typing import Annotated
-from auth.auth_service import get_jwt
+from src.auth.auth_service import get_jwt
 from fastapi import Depends, APIRouter
 from fastapi.responses import JSONResponse
-from incidents.commands.update_incident.update_incident_dto import UpdateIncidentDto
-from incidents.commands.update_incident.update_incident_use_case import UpdateIncidentUseCase
+from src.incidents.commands.update_incident.update_incident_dto import UpdateIncidentDto
+from src.incidents.commands.update_incident.update_incident_use_case import UpdateIncidentUseCase
 
 updateIncidentUseCase = UpdateIncidentUseCase()
 

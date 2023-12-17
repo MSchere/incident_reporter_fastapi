@@ -1,13 +1,14 @@
 
-from core.redis import get_redis
-from incidents.database.incident_model import Incident, IncidentStatus
+from src.core.redis import get_redis
+from src.incidents.database.incident_model import Incident, IncidentStatus
 from datetime import datetime
 import json
+
 
 class IncidentRepository:
     def __init__(self):
         self.redis = get_redis()
-    
+
     def create_incident(self, title: str, description: str, created_by: str) -> Incident or None:
         try:
             incident = Incident(title, description, created_by)
@@ -29,7 +30,8 @@ class IncidentRepository:
                 incident_to_update["id"],
                 IncidentStatus[status],
                 updated_by,
-                datetime.strptime(incident_to_update["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
+                datetime.strptime(
+                    incident_to_update["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
                 updated_at=datetime.now()
             )
             self.redis.set(id, updated_incident.json())
@@ -57,8 +59,10 @@ class IncidentRepository:
                 incident["id"],
                 IncidentStatus[incident["status"]],
                 incident["updatedBy"],
-                datetime.strptime(incident["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
-                datetime.strptime(incident["updatedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                datetime.strptime(
+                    incident["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
+                datetime.strptime(
+                    incident["updatedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
             )
         except Exception as e:
             print(f"Error getting incident: {e}")
@@ -76,13 +80,13 @@ class IncidentRepository:
                     incident["id"],
                     IncidentStatus[incident["status"]],
                     incident["updatedBy"],
-                    datetime.strptime(incident["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
-                    datetime.strptime(incident["updatedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                    datetime.strptime(
+                        incident["createdAt"], "%Y-%m-%dT%H:%M:%S.%fZ"),
+                    datetime.strptime(
+                        incident["updatedAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
                 ).json())
             incidents.sort(key=lambda x: x["createdAt"], reverse=True)
             return incidents
         except Exception as e:
             print(f"Error getting incidents: {e}")
             return []
-
-
